@@ -1,0 +1,62 @@
+﻿// See https://aka.ms/new-console-template for more information
+
+
+namespace GenericsAndCollections
+{
+    public class Program
+    {
+        public static void Main (String[] args)
+        {
+            int[] array = new int[] { 1, 2, 4, 3, 5, 6, 7, 8, 9, 10};
+            
+            GenericCollection<int> collection = new GenericCollection<int>(array);
+            collection.AddItem(1);
+            collection.AddItem(2);
+            collection.AddItem(3);
+            collection.AddItem(4);
+            collection.AddItem(5);
+            collection.AddItem(6);
+            for (int i = 0; i < collection.Index; i++)
+            {
+                Console.Write("{0} ",collection.GetIndex(i));
+            }
+            collection.Swap(2, 5);
+            Console.WriteLine();
+            for (int i = 0; i < collection.Index; i++)
+            {
+                Console.Write("{0} ",collection.GetIndex(i));
+            }
+            
+            Console.WriteLine();
+            
+            GenericCollection<string> string_collection = new GenericCollection<string>();
+            string_collection.AddItem("John");
+            string_collection.AddItem("Daniel");
+            string_collection.AddItem("Amanda");
+            for (int i = 0; i < string_collection.Index; i++)
+            {
+                Console.Write("{0} ", string_collection.GetIndex(i));
+            }
+
+            Console.WriteLine();
+
+            IShape[] shapesArray = new IShape[3]
+            {
+                new Circle(2,2),
+                new Circle(3,2),
+                new Rectangle(3,3,2),
+            };
+            GenericCollection<IShape> shape_collection = new GenericCollection<IShape>(shapesArray);
+            shape_collection.AddItem(new Circle(7, 3));
+
+            for (int i = 0; i < shape_collection.Index; i++)
+            {
+                shape_collection.GetIndex(i).Draw();
+            }
+
+
+        }
+    }
+}
+
+
