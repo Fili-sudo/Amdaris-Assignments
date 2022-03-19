@@ -88,7 +88,19 @@ namespace GenericsAndCollections
                 Console.WriteLine(fruit.Weight);
             }
 
+            
+            
 
+            var filestream = File.Create("C:/Users/david/OneDrive/Desktop/Amdaris/Amdaris-Assignments/info.txt");
+
+            var sw = new StreamWriter(filestream);
+            
+            foreach (Fruit fruit in list)
+            {
+                sw.Write(fruit);
+                sw.WriteLine(fruit.Weight);
+            }
+            sw.Close();
         }
         private static void Log(Exception exception)
         {
