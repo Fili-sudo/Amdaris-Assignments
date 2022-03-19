@@ -5,10 +5,11 @@ namespace GenericsAndCollections
 {
     public class Program
     {
-        public static void Main (String[] args)
+        public static void Main(String[] args)
         {
-            int[] array = new int[] { 1, 2, 4, 3, 5, 6, 7, 8, 9, 10};
-            
+#if RELEASE
+            int[] array = new int[] { 1, 2, 4, 3, 5, 6, 7, 8, 9, 10 };
+
             GenericCollection<int> collection = new GenericCollection<int>(array);
             collection.AddItem(1);
             collection.AddItem(2);
@@ -18,17 +19,17 @@ namespace GenericsAndCollections
             collection.AddItem(6);
             for (int i = 0; i < collection.Index; i++)
             {
-                Console.Write("{0} ",collection.GetIndex(i));
+                Console.Write("{0} ", collection.GetIndex(i));
             }
             collection.Swap(2, 5);
             Console.WriteLine();
             for (int i = 0; i < collection.Index; i++)
             {
-                Console.Write("{0} ",collection.GetIndex(i));
+                Console.Write("{0} ", collection.GetIndex(i));
             }
-            
+
             Console.WriteLine();
-            
+
             GenericCollection<string> string_collection = new GenericCollection<string>();
             string_collection.AddItem("John");
             string_collection.AddItem("Daniel");
@@ -53,8 +54,45 @@ namespace GenericsAndCollections
             {
                 shape_collection.GetIndex(i).Draw();
             }
+#endif
+            Fruit[] fruits = new Fruit[3];
+            for (int i = 0; i < fruits.Length; i++)
+            {
+                try
+                {
+                    fruits[i] = new Orange(Colors.Blue, 300);
+                }
+                catch (InvalidColorException ex)
+                {
+                    Log(ex);
+                }
+                
+            }
+            Console.WriteLine();
+            List<Fruit> list = new List<Fruit>()
+            {
+                new Orange(Colors.Red, 300),
+                new Apple(Colors.Green, 150),
+                new Orange(Colors.Orange, 175)
+            };
+
+            foreach (Fruit fruit in list)
+            {
+                Console.Write(fruit.ToString());
+                Console.WriteLine(fruit.Weight);
+            }
+            list.Sort();
+            foreach (Fruit fruit in list)
+            {
+                Console.Write(fruit.ToString());
+                Console.WriteLine(fruit.Weight);
+            }
 
 
+        }
+        private static void Log(Exception exception)
+        {
+            Console.WriteLine(exception.Message);
         }
     }
 }
