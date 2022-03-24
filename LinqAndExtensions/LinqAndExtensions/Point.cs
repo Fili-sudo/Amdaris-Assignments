@@ -16,4 +16,15 @@ namespace LinqAndExtensions
             return $"({X},{Y})";
         }
     }
+
+    public class Point3D : Point
+    {
+        public int Z { get; set; }
+
+        public override string ToString()
+        {
+            return $"({X},{Y},{Z})";
+        }
+
+    }
 }
