@@ -2,6 +2,7 @@
 
 
 using DesignPatterns;
+using DesignPatterns.Decorator;
 using DesignPatterns.StrategySorters;
 
 Product product1 = new Product { Categories = new List<string> { "4 players", "strategy", "dice" }, ProductName = "Catan", Price = 45, Quantity = 15 };
@@ -16,17 +17,25 @@ productRepository.CreateProduct(product2);
 productRepository.CreateProduct(product3);
 List<Product> products = productRepository.GetProducts().ToList();
 
-foreach (Product product in products)
-{
-    Console.WriteLine(product);
-}
+//foreach (Product product in products)
+//{
+//    Console.WriteLine(product);
+//}
 Console.WriteLine();
 productRepository.Sorter = priceSorter;
 products = productRepository.GetProducts().ToList();
-foreach (Product product in products)
-{
-    Console.WriteLine(product);
-}
+//foreach (Product product in products)
+//{
+//    Console.WriteLine(product);
+//}
+
+IOrderItem orderItem = new OrderItem(product1, 2);
+orderItem = new GiftWrapped(orderItem);
+orderItem = new GiftCard(orderItem);
+orderItem = new ComplementaryChocolate(orderItem);
+
+Console.WriteLine(orderItem.GetOrderItemPrice());
+Console.WriteLine(orderItem);
 
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesignPatterns.Decorator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns
 {
-    public class OrderItem : Entity
+    public class OrderItem : Entity, IOrderItem
     {
         public Product Product { get; set; }
         public int Quantity { get; set; }
@@ -30,5 +31,10 @@ namespace DesignPatterns
         }
         public double GetProductPrice() { return Product.Price; }
         public string GetProductName() { return Product.ProductName; }
+
+        public double GetOrderItemPrice()
+        {
+            return Product.Price * Quantity;
+        }
     }
 }
