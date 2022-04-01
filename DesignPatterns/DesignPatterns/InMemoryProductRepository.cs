@@ -9,7 +9,15 @@ namespace DesignPatterns
     public class InMemoryProductRepository
     {
         private List<Product> _products;
-        private readonly ISorterStrategy _sorter;
+        private ISorterStrategy _sorter;
+
+        public ISorterStrategy Sorter 
+        {
+            set
+            {
+                _sorter = value;
+            } 
+        }
 
         public InMemoryProductRepository()
         {

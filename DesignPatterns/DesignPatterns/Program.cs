@@ -20,6 +20,13 @@ foreach (Product product in products)
 {
     Console.WriteLine(product);
 }
+Console.WriteLine();
+productRepository.Sorter = priceSorter;
+products = productRepository.GetProducts().ToList();
+foreach (Product product in products)
+{
+    Console.WriteLine(product);
+}
 
 
 
